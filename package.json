@@ -1,0 +1,83 @@
+{
+  "name": "vscode-quick-route-config",
+  "displayName": "vscode-quick-route-config",
+  "description": "A simple VScode extension to set route config quickly.",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-quick-route-config.quickRouteConfig",
+        "title": "Quick Set Route Config"
+      }
+    ],
+    "keybindings": [
+        {
+            "key": "f10",
+            "command": "vscode-quick-route-config.quickRouteConfig"
+        }
+    ],
+    "configuration": {
+      "title": "Quick Set Route Config",
+      "properties": {
+        "quickRouteConfig.keyList": {
+          "type": "array",
+          "default": ["mes", "cfs", "epm"],
+          "description": "The module name you want to set."
+        },
+        "quickRouteConfig.remoateSettingPath": {
+          "type": "string",
+          "default": "src/configFiles/moduleFederation/remoteSetting.mjs",
+          "description": "The path of the remote setting file."
+        }
+      }
+    }
+  },
+  "icon": "assets/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.syntecclub.com/ProjectRoot/CloudProduct/common/tool/vscode-quick-route-config.git"
+  },
+  "scripts": {
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map && vsce package --out dist/vscode-quick-route-config.vsix",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test",
+    "extension": " code --install-extension ./dist/vscode-quick-route-config.vsix",
+    "build": "npm run package && npm run extension"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "vue-template-compiler": "^2.7.16"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.35",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.16",
+    "@types/vscode": "^1.86.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.9",
+    "commander": "^12.0.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "eslint": "^8.56.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
