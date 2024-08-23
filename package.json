@@ -45,7 +45,7 @@
   "icon": "assets/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.syntecclub.com/ProjectRoot/CloudProduct/common/tool/vscode-quick-route-config.git"
+    "url": "https://github.com/tsai1247/QuickRouteSetting.git"
   },
   "scripts": {
     "compile": "webpack",
